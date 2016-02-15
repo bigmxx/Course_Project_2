@@ -1,11 +1,11 @@
 # # setwd("D:/R/Exploratory Data Analysis/Week4/Course Project 2")
-# setwd("D:/R/")
+setwd("D:/R/")
 library(sqldf)
 library(ggplot2)
 
 ## Read file with data
-NEI <- readRDS("./Exploratory_Data_Analysis/Week4/Course_Project_2/summarySCC_PM25.rds")
-SCC <- readRDS("./Exploratory_Data_Analysis/Week4/Course_Project_2/Source_Classification_Code.rds")
+NEI <- readRDS("./Exploratory_Data_Analysis/Week4/Course_Project_2/Course_Project_2/summarySCC_PM25.rds")
+SCC <- readRDS("./Exploratory_Data_Analysis/Week4/Course_Project_2/Course_Project_2/Source_Classification_Code.rds")
 
 # Emissions from motor vehicle sources from 1999-2008 in Baltimore City
 
@@ -20,7 +20,7 @@ colnames(df) <- c("Year", "Emissions")
 
 # Generate the graph in the same directory as the source code
 ## Saving to file
-png(filename = "./Exploratory_Data_Analysis/Week4/Course_Project_2/plot5.png", height = 640, width = 640)
+png(filename = "./Exploratory_Data_Analysis/Week4/Course_Project_2/Course_Project_2/plot5.png", height = 640, width = 640)
 
 ## Prepare plot4
 g <- ggplot(df, aes(as.factor(Year), Emissions))
@@ -28,7 +28,7 @@ g <- ggplot(df, aes(as.factor(Year), Emissions))
 g <- g +    
   geom_bar(stat="identity", position = "identity", 
            aes(fill = ifelse(Emissions < mean(Emissions), "grey", rgb(16,206,248, maxColorValue=255)))) + 
-  ggtitle(expression(paste("Total Emissions of PM"[2.5], " from motor vehicle sources in Baltimore City, MD"))) + 
+  ggtitle("Total Emissions of PM from motor vehicle sources \n in Baltimore City, MD") + 
   xlab('Years') + 
   ylab(expression(paste('PM', ''[2.5], ' in tons'))) + 
   geom_text(aes(label = round(Emissions, digits = 2), hjust = .5, vjust = 1.5)) + 
